@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <script>
+        function toggleEditForm(todoId) {
+            const taskText = document.getElementById("taskText" + todoId);
+            const taskInput = document.getElementById("taskInput" + todoId);
+            const editButton = document.getElementById("editButton" + todoId);
+            
+            if (taskText.style.display === "none") {
+                taskText.style.display = "block";
+                taskInput.style.display = "none";
+                editButton.innerText = "Edit Task";
+            } else {
+                taskText.style.display = "none";
+                taskInput.style.display = "block";
+                editButton.innerText = "Cancel";
+            }
+        }
+    </script>
+    <style>
+        .message-success {
+            color: green;
+            font-weight: bold;
+        }
+
+        .message-error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Todo App</h1>
+    </div>
+    <div>
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

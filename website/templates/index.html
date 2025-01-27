@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    {% if message %}
+        <p class="{% if 'successfully' in message %}message-success{% else %}message-error{% endif %}">
+            {{ message }}
+        </p>
+    {% endif %}
+
+    <form action="/add" method="post">
+        <div>
+            <label for="task">Add Task:</label>
+            <input type="text" id="task" name="task" placeholder="Enter a new task" required>
+            <button type="submit">Add Task</button>
+        </div>
+    </form>
+    <hr>
+</div>
+
+<div>
+    {% for todo in todo_list %}
+    <div>
+        <p id="taskText{{ todo.id }}">
+            <b>{{ todo.id }}:</b> {{ todo.task }} 
+            - {% if todo.complete %}Complete{% else %}Incomplete{% endif %}
+        </p>
+        <p>Created on: {{ todo.date_created.strftime('%d-%m-%Y %H:%M:%S') }}</p>
+
+        <form id="taskInput{{ todo.id }}" action="/update/{{ todo.id }}" method="post" style="display: none;">
+            <input type="text" name="task" value="{{ todo.task }}" required>
+            <button type="submit">Save Changes</button>
+        </form>
+
+        <form action="/update/{{ todo.id }}" method="post" style="display: inline;">
+            <button type="submit">{% if todo.complete %}Mark as Incomplete{% else %}Mark as Complete{% endif %}</button>
+        </form>
+
+        <form action="/delete/{{ todo.id }}" method="post" style="display: inline;">
+            <button type="submit">Delete Task</button>
+        </form>
+
+        <button id="editButton{{ todo.id }}" onclick="toggleEditForm('{{ todo.id }}')">Edit Task</button>
+    </div>
+    <hr>
+    {% endfor %}
+</div>
+{% endblock %}
