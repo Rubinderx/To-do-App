@@ -25,7 +25,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 2px; /* Minimal gap to bring the button closer */
+    gap: 2px;
 }
 
 .task-input input[type="text"] {
@@ -40,8 +40,8 @@ body {
     background-color: #1D3557;
     color: white;
     border: none;
-    padding: 10px 12px; /* Smaller padding for a smaller button */
-    font-size: 14px; /* Smaller font size */
+    padding: 10px 12px;
+    font-size: 14px;
     border-radius: 5px;
     cursor: pointer;
 }
