@@ -3,43 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo App</title>
-    <script>
-        function toggleEditForm(todoId) {
-            const taskText = document.getElementById("taskText" + todoId);
-            const taskInput = document.getElementById("taskInput" + todoId);
-            const editButton = document.getElementById("editButton" + todoId);
-            
-            if (taskText.style.display === "none") {
-                taskText.style.display = "block";
-                taskInput.style.display = "none";
-                editButton.innerText = "Edit Task";
-            } else {
-                taskText.style.display = "none";
-                taskInput.style.display = "block";
-                editButton.innerText = "Cancel";
-            }
-        }
-    </script>
-    <style>
-        .message-success {
-            color: green;
-            font-weight: bold;
-        }
-
-        .message-error {
-            color: red;
-            font-weight: bold;
-        }
-    </style>
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div>
-        <h1>Todo App</h1>
+    <div class="sidebar">
+        <h1>Task Manager</h1>
+        <form action="/add" method="post">
+            <div class="task-input">
+                <input type="text" id="task" name="task" placeholder="Enter a new task" required>
+                <button type="submit">Add Task</button>
+            </div>
+        </form>
+        <footer>
+            <p>A Full Stack App By Rubinder Gidar</p>
+            <p><a href="https://github.com/Rubinderx/To-do-App" target="_blank">Link to GH repo</a></p>
+        </footer>
     </div>
-    <div>
+    <div class="content">
         {% block content %}
         {% endblock %}
     </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
